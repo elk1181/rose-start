@@ -1,0 +1,77 @@
+
+  [{
+    "first_name":"Jane",
+    "last_name":"Doe",
+    "email":"JaneDoe@live.unc.edu",
+    "phone":"(123)456-7869",
+    "town": "Juenau, Alaska",
+    "school":"UNC Chapel Hill",
+    "major": "Computer Science",
+    "minor": ["music","anthropology"],
+    "graduation_year": 2023,
+    "courses":["data structures","Intro to Java"],
+    "work_experience": {
+        "company_name": [ "bar", "bar" ],
+        "position": [ "bar", "bar" ],
+        "start_date": ["bar", "bar" ],
+        "end_date": [ "bar", "bar" ],
+        "job_description": ["bar", "bar" ]
+      }
+    ,
+    "projects": {
+        "project_name": [ "bar", "bar" ],
+        "date": ["bar", "bar" ],
+        "description": [ "bar", "bar" ],
+        "technologies": [["bar","bar"], ["bar","bar"] ]
+      },
+      "activities": {
+        "activity_name": [ "bar", "bar" ],
+        "start_date": [ "bar", "bar" ],
+        "end_date": ["bar", "bar" ],
+        "description": [ "bar", "bar" ]
+      },
+    
+    
+    
+    "skills": ["python","java","c++"],
+    "languages":["english","spanish"],
+    "awards":["Dean's List", "1st place at Pearl Hacks"]
+}, {
+   "first_name":"Joe",
+   "last_name":"Doe",
+   "email":"JaneDoe@live.unc.edu",
+   "phone":"(123)456-7869",
+   "town": "Juenau, Alaska",
+   "school":"UNC Chapel Hill",
+   "major": "Computer Science",
+   "minor": ["music","anthropology"],
+   "graduation_year": 2023,
+   "courses":["data structures","Intro to Java"],
+   "work_experience":
+   [{
+       "company_name": "Apple",
+       "position": "Front-End Engineering Intern",
+       "start_date": "May 2020",
+       "end_date": "August 2020",
+       "job_description": "hi"
+   }],
+   "projects":[
+       {
+           "project_name": "Calendar App",
+           "date": "September 2020",
+           "description": "",
+           "technologies": [""]
+       }
+   ],
+   "activities":[
+       {
+           "activity_name": "Women In CS",
+           "start_date": "October 2019",
+           "end_date": "Now",
+           "description": ""
+       }
+   ],
+   "skills": ["python","java","c++"],
+   "languages":["english","spanish"],
+   "awards":["Dean's List", "1st place at Pearl Hacks"]
+}]

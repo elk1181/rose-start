@@ -1,7 +1,18 @@
 div.container {
     text-align: center;
 }
-.justify-center .column{
-    display: flex !important;
-    justify-content: center !important;
+
+h1.title {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 4em;
+}
+
+div.hero-body {
+    background-color: mediumpurple;
+}
+
+
+
+a:hover {
+    color:black;
 }

@@ -29,13 +29,13 @@
             "project_name": "Calendar App",
             "date": "September 2020",
             "description": "This app keeps track of my to do list. It also does things.",
-            "technologies": [""]
+            "technologies": ["python","keras","REACTjs"]
         },        
         {
             "project_name": "Video App",
             "date": "September 2020",
             "description": "This app keeps track of my videos. It also does things.",
-            "technologies": [""]
+            "technologies": ["c++","html","NodeJS"]
         }
     ],
     "activities":[
