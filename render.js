@@ -14,6 +14,7 @@ var app = express();
 app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'information.html'));
 });
+
 var minors = "";
 for(var i=0; i<jsonData[1].minor.length; i++){
 minors+= jsonData[1].minor[i] + ", ";
