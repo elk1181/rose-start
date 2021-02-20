@@ -15,13 +15,26 @@
         "position": "Front-End Engineering Intern",
         "start_date": "May 2020",
         "end_date": "August 2020",
-        "job_description": "hi"
+        "job_description": "I did this. And this. Also some other cool things. And this."
+    },
+    {
+        "company_name": "Facebook",
+        "position": "Back-End Engineering Intern",
+        "start_date": "May 2019",
+        "end_date": "August 2019",
+        "job_description": "I did this. And this. Also some other cool things. And this."
     }],
     "projects":[
         {
             "project_name": "Calendar App",
             "date": "September 2020",
-            "description": "",
+            "description": "This app keeps track of my to do list. It also does things.",
+            "technologies": [""]
+        },        
+        {
+            "project_name": "Video App",
+            "date": "September 2020",
+            "description": "This app keeps track of my videos. It also does things.",
             "technologies": [""]
         }
     ],
@@ -30,7 +43,13 @@
             "activity_name": "Women In CS",
             "start_date": "October 2019",
             "end_date": "Now",
-            "description": ""
+            "description": "I am a member. I help teach women how to code."
+        },
+        {
+            "activity_name": "Sigma Rho Lamda",
+            "start_date": "October 2019",
+            "end_date": "Now",
+            "description": "I am a member. I make Challah for Challah for Hunger."
         }
     ],
     "skills": ["python","java","c++"],
