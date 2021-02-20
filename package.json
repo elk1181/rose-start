@@ -1,0 +1,25 @@
+{
+  "name": "rose-start",
+  "version": "1.0.0",
+  "description": "Website for Pearl Hacks that provides resources and opportunities for those who identify as women or non-binary interested in a career in computer science",
+  "main": "render.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elk1181/rose-start.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elk1181/rose-start/issues"
+  },
+  "homepage": "https://github.com/elk1181/rose-start#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "open": "^7.4.2",
+    "path": "^0.12.7"
+  }
+}
