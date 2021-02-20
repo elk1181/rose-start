@@ -59,6 +59,8 @@ fs.readFile('./info.json', 'utf8', (err, jsonString) => {
 
 */
 
+
+
 function work(){
     var l = []
     for(var i=0;i<jsonData[0].work_experience.length;i++){
@@ -67,9 +69,11 @@ function work(){
             text: jsonData[0].work_experience[i].company_name+", "+jsonData[0].work_experience[i].position,
             style: "subheader2"
         },{
-            text: jsonData[0].work_experience[i].job_description,
+			ul: jsonData[0].work_experience[i].job_description.split('.'),            
             style: "subheader3"
-        })
+        }
+        
+        )
     }
     return l
 }
@@ -82,7 +86,7 @@ function projects(){
             text: jsonData[0].projects[i].project_name,
             style: "subheader2"
         },{
-            text: jsonData[0].projects[i].job_description,
+			ul: jsonData[0].projects[i].description.split('.'),            
             style: "subheader3"
         },
         {
@@ -104,7 +108,7 @@ function activities(){
         ],
             style: "subheader2"
         },{
-            text: jsonData[0].activities[i].description,
+			ul: jsonData[0].activities[i].description.split('.'),            
             style: "subheader3"
         }
         )
@@ -125,12 +129,12 @@ app.post('/pdf', (req, res, next)=>{
                 style: 'header'
             },
             {
-                text: jsonData[0].email+","+jsonData[0].phone+","+jsonData[0].town,
+                text: jsonData[0].email+","+jsonData[0].phone+","+jsonData[0].town+'\n',
                 style: 'subheader3'
             },
             
             {
-                text: "Education",
+                text: "Education"+'\n',
                 style: 'subheader'
             },
             {
@@ -143,7 +147,7 @@ app.post('/pdf', (req, res, next)=>{
 
         },
         {
-            text: "Relevant Coursework: "+jsonData[0].courses,
+            text: "Relevant Coursework: "+jsonData[0].courses+'\n',
             style: 'subheader3'
         }
         ,
@@ -151,17 +155,19 @@ app.post('/pdf', (req, res, next)=>{
                 text: "Experience",
                 style: 'subheader'
             },
-            work(),
+        
+            work()
+            ,'\n',
             {
                 text: "Projects",
                 style: 'subheader'
             },
-            projects(),
+            projects(),'\n',
             {
                 text: "Activities",
                 style: 'subheader'
             },
-            activities(),
+            activities(),'\n',
             {
                 text: "Skills: "+jsonData[0].skills,
                 style: 'subheader3'
@@ -175,20 +181,6 @@ app.post('/pdf', (req, res, next)=>{
                 style: 'subheader3'
             },
 
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam.\n\n',
-            {
-                text: 'Subheader 1 - using subheader style',
-                style: 'subheader'
-            },
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam posset, eveniunt specie deorsus efficiat sermone instituendarum fuisse veniat, eademque mutat debeo. Delectet plerique protervi diogenem dixerit logikh levius probabo adipiscuntur afficitur, factis magistra inprobitatem aliquo andriam obiecta, religionis, imitarentur studiis quam, clamat intereant vulgo admonitionem operis iudex stabilitas vacillare scriptum nixam, reperiri inveniri maestitiam istius eaque dissentias idcirco gravis, refert suscipiet recte sapiens oportet ipsam terentianus, perpauca sedatio aliena video.',
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam posset, eveniunt specie deorsus efficiat sermone instituendarum fuisse veniat, eademque mutat debeo. Delectet plerique protervi diogenem dixerit logikh levius probabo adipiscuntur afficitur, factis magistra inprobitatem aliquo andriam obiecta, religionis, imitarentur studiis quam, clamat intereant vulgo admonitionem operis iudex stabilitas vacillare scriptum nixam, reperiri inveniri maestitiam istius eaque dissentias idcirco gravis, refert suscipiet recte sapiens oportet ipsam terentianus, perpauca sedatio aliena video.',
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam posset, eveniunt specie deorsus efficiat sermone instituendarum fuisse veniat, eademque mutat debeo. Delectet plerique protervi diogenem dixerit logikh levius probabo adipiscuntur afficitur, factis magistra inprobitatem aliquo andriam obiecta, religionis, imitarentur studiis quam, clamat intereant vulgo admonitionem operis iudex stabilitas vacillare scriptum nixam, reperiri inveniri maestitiam istius eaque dissentias idcirco gravis, refert suscipiet recte sapiens oportet ipsam terentianus, perpauca sedatio aliena video.\n\n',
-            {
-                text: 'Subheader 2 - using subheader style',
-                style: 'subheader'
-            },
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam posset, eveniunt specie deorsus efficiat sermone instituendarum fuisse veniat, eademque mutat debeo. Delectet plerique protervi diogenem dixerit logikh levius probabo adipiscuntur afficitur, factis magistra inprobitatem aliquo andriam obiecta, religionis, imitarentur studiis quam, clamat intereant vulgo admonitionem operis iudex stabilitas vacillare scriptum nixam, reperiri inveniri maestitiam istius eaque dissentias idcirco gravis, refert suscipiet recte sapiens oportet ipsam terentianus, perpauca sedatio aliena video.',
-            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam posset, eveniunt specie deorsus efficiat sermone instituendarum fuisse veniat, eademque mutat debeo. Delectet plerique protervi diogenem dixerit logikh levius probabo adipiscuntur afficitur, factis magistra inprobitatem aliquo andriam obiecta, religionis, imitarentur studiis quam, clamat intereant vulgo admonitionem operis iudex stabilitas vacillare scriptum nixam, reperiri inveniri maestitiam istius eaque dissentias idcirco gravis, refert suscipiet recte sapiens oportet ipsam terentianus, perpauca sedatio aliena video.\n\n',
             {
                 text: 'It is possible to apply multiple styles, by passing an array. This paragraph uses two styles: quote and small. When multiple styles are provided, they are evaluated in the specified order which is important in case they define the same properties',
                 style: ['quote', 'small']
@@ -197,8 +189,8 @@ app.post('/pdf', (req, res, next)=>{
         styles: {
             header: {
                 fontSize: 18,
-                bold: true,
-                alignment: 'right'
+                bold: true
+                //alignment: 'right'
             },
             subheader: {
                 fontSize: 15,
