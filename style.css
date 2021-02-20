@@ -1,0 +1,7 @@
+div.container {
+    text-align: center;
+}
+.justify-center .column{
+    display: flex !important;
+    justify-content: center !important;
+}
