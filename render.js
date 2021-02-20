@@ -59,6 +59,21 @@ fs.readFile('./info.json', 'utf8', (err, jsonString) => {
 
 */
 
+function work(){
+    var l = []
+    for(var i=0;i<jsonData[0].work_experience.length;i++){
+        l.push(
+        {
+            text: jsonData[0].work_experience[i].company_name+", "+jsonData[0].work_experience[i].position,
+            style: "subheader2"
+        },{
+            text: jsonData.work_experience[i].job_description,
+            style: "subheader2"
+        })
+    }
+    return l
+}
+
 app.post('/pdf', (req, res, next)=>{
     //res.send('PDF');
 
@@ -75,13 +90,19 @@ app.post('/pdf', (req, res, next)=>{
                 text: jsonData[0].email+","+jsonData[0].phone+","+jsonData[0].town,
                 style: 'small'
             },
+            
             {
                 text: "Education",
                 style: 'subheader'
             },
             jsonData[0].school,
-            jsonData[0].major + "Minor in "+ jsonData[0].minor[0],
-                
+            "Bachelor of Science" + jsonData[0].major + "Minor in "+ jsonData[0].minor[0],
+            "Relevant Coursework: "+jsonData[0].courses,
+            {
+                text: "Experience",
+                style: 'subheader'
+            },
+            work(),
             
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam.\n\n',
             {
@@ -116,6 +137,10 @@ app.post('/pdf', (req, res, next)=>{
             },
             small: {
                 fontSize: 8
+            },
+            subheader2:{
+                bold: true,
+                fontSize: 10
             }
         }      
     };
