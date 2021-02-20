@@ -11,8 +11,7 @@ div.hero-body {
     background-color: mediumpurple;
 }
 
-
-
-a:hover {
-    color:black;
+.justify-center .column{
+    display: flex !important;
+    justify-content: center !important;
 }

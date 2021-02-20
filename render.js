@@ -1,7 +1,7 @@
 
 'use strict';
 
-let jsonData = require('./info.json');
+let jsonData = require('./info2.json');
 var express = require('express');
 var path = require('path');
 var open = require('open');
@@ -64,17 +64,26 @@ fs.readFile('./info.json', 'utf8', (err, jsonString) => {
 
 */
 
-
+function spaces(s,s2){
+    var e=""
+    console.log(s.length+s2.length)
+    for(var i=s.length+s2.length;i<168;i++){
+        e+=" "
+    }
+    console.log(e.length)
+    return e
+}  
 
 function work(){
     var l = []
-    for(var i=0;i<jsonData[0].work_experience.length;i++){
+    for(var i=0;i<jsonData[0].work_experience.company_name.length;i++){
         l.push(
         {
-            text: jsonData[0].work_experience[i].company_name+", "+jsonData[0].work_experience[i].position,
+            text: [jsonData[0].work_experience.company_name[i]+", "+jsonData[0].work_experience.position[i]+"   ",
+            {text: "("+jsonData[0].work_experience.start_date[i]+" - "+jsonData[0].work_experience.end_date[i]+")", style:"dates"}],
             style: "subheader2"
         },{
-			ul: jsonData[0].work_experience[i].job_description.split('.'),            
+			ul: jsonData[0].work_experience.job_description[i].split('.'),            
             style: "subheader3"
         }
         
@@ -84,18 +93,20 @@ function work(){
 }
 
 function projects(){
+
     var l = []
-    for(var i=0;i<jsonData[0].projects.length;i++){
+    for(var i=0;i<jsonData[0].projects.project_name.length;i++){
         l.push(
         {
-            text: jsonData[0].projects[i].project_name,
+            text: [jsonData[0].projects.project_name[i]+"   ",
+            {text: "("+jsonData[0].projects.date[i]+")", style:"dates"}],
             style: "subheader2"
         },{
-			ul: jsonData[0].projects[i].description.split('.'),            
+			ul: jsonData[0].projects.description[i].split('.'),            
             style: "subheader3"
         },
         {
-        text: "Technologies: "+jsonData[0].projects[i].technologies,
+        text: "Technologies: "+jsonData[0].projects.technologies[i],
         style: "subheader3"
         }
         )
@@ -105,15 +116,15 @@ function projects(){
 
 function activities(){
     var l = []
-    for(var i=0;i<jsonData[0].activities.length;i++){
+    for(var i=0;i<jsonData[0].activities.activity_name.length;i++){
         l.push(
         {
-            text: [jsonData[0].activities[i].activity_name,
-            { text:  jsonData[0].activities[i].start_date, fontSize: 15, alignment: 'right'}
+            text: [jsonData[0].activities.activity_name[i]+"   ",
+            {text: "("+jsonData[0].activities.start_date[i]+" - "+jsonData[0].activities.end_date[i]+")", style:"dates"}
         ],
             style: "subheader2"
         },{
-			ul: jsonData[0].activities[i].description.split('.'),            
+			ul: jsonData[0].activities.description[i].split('.'),            
             style: "subheader3"
         }
         )
@@ -134,10 +145,10 @@ app.post('/pdf', (req, res, next)=>{
                 style: 'header'
             },
             {
-                text: jsonData[0].email+","+jsonData[0].phone+","+jsonData[0].town+'\n',
+                text: jsonData[0].email+"/"+jsonData[0].phone+"/"+jsonData[0].town,
                 style: 'subheader3'
             },
-            
+            '\n',
             {
                 text: "Education"+'\n',
                 style: 'subheader'
@@ -152,10 +163,10 @@ app.post('/pdf', (req, res, next)=>{
 
         },
         {
-            text: "Relevant Coursework: "+jsonData[0].courses+'\n',
+            text: "Relevant Coursework: "+jsonData[0].courses,
             style: 'subheader3'
         }
-        ,
+        ,'\n',
             {
                 text: "Experience",
                 style: 'subheader'
@@ -186,10 +197,6 @@ app.post('/pdf', (req, res, next)=>{
                 style: 'subheader3'
             },
 
-            {
-                text: 'It is possible to apply multiple styles, by passing an array. This paragraph uses two styles: quote and small. When multiple styles are provided, they are evaluated in the specified order which is important in case they define the same properties',
-                style: ['quote', 'small']
-            }
         ],
         styles: {
             header: {
@@ -212,6 +219,10 @@ app.post('/pdf', (req, res, next)=>{
                 fontSize: 10
             },
             subheader3:{
+                fontSize: 10
+            },
+            dates:{
+                alignment: 'right',
                 fontSize: 10
             }
         }      
