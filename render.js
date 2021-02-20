@@ -1,7 +1,7 @@
 
 'use strict';
 
-let jsonData = require('./info.json');
+let jsonData = require('./info2.json');
 var express = require('express');
 var path = require('path');
 var open = require('open');
@@ -76,14 +76,14 @@ function spaces(s,s2){
 
 function work(){
     var l = []
-    for(var i=0;i<jsonData[0].work_experience.length;i++){
+    for(var i=0;i<jsonData[0].work_experience.company_name.length;i++){
         l.push(
         {
-            text: [jsonData[0].work_experience[i].company_name+", "+jsonData[0].work_experience[i].position+"   ",
-            {text: "("+jsonData[0].work_experience[i].start_date+" - "+jsonData[0].work_experience[i].end_date+")", style:"dates"}],
+            text: [jsonData[0].work_experience.company_name[i]+", "+jsonData[0].work_experience.position[i]+"   ",
+            {text: "("+jsonData[0].work_experience.start_date[i]+" - "+jsonData[0].work_experience.end_date[i]+")", style:"dates"}],
             style: "subheader2"
         },{
-			ul: jsonData[0].work_experience[i].job_description.split('.'),            
+			ul: jsonData[0].work_experience.job_description[i].split('.'),            
             style: "subheader3"
         }
         
@@ -95,18 +95,18 @@ function work(){
 function projects(){
 
     var l = []
-    for(var i=0;i<jsonData[0].projects.length;i++){
+    for(var i=0;i<jsonData[0].projects.project_name.length;i++){
         l.push(
         {
-            text: [jsonData[0].projects[i].project_name+"   ",
-            {text: "("+jsonData[0].projects[i].date+")", style:"dates"}],
+            text: [jsonData[0].projects.project_name[i]+"   ",
+            {text: "("+jsonData[0].projects.date[i]+")", style:"dates"}],
             style: "subheader2"
         },{
-			ul: jsonData[0].projects[i].description.split('.'),            
+			ul: jsonData[0].projects.description[i].split('.'),            
             style: "subheader3"
         },
         {
-        text: "Technologies: "+jsonData[0].projects[i].technologies,
+        text: "Technologies: "+jsonData[0].projects.technologies[i],
         style: "subheader3"
         }
         )
@@ -116,15 +116,15 @@ function projects(){
 
 function activities(){
     var l = []
-    for(var i=0;i<jsonData[0].activities.length;i++){
+    for(var i=0;i<jsonData[0].activities.activity_name.length;i++){
         l.push(
         {
-            text: [jsonData[0].activities[i].activity_name+"   ",
-            {text: "("+jsonData[0].activities[i].start_date+" - "+jsonData[0].activities[i].end_date+")", style:"dates"}
+            text: [jsonData[0].activities.activity_name[i]+"   ",
+            {text: "("+jsonData[0].activities.start_date[i]+" - "+jsonData[0].activities.end_date[i]+")", style:"dates"}
         ],
             style: "subheader2"
         },{
-			ul: jsonData[0].activities[i].description.split('.'),            
+			ul: jsonData[0].activities.description[i].split('.'),            
             style: "subheader3"
         }
         )
