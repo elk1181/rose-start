@@ -64,14 +64,23 @@ fs.readFile('./info.json', 'utf8', (err, jsonString) => {
 
 */
 
-
+function spaces(s,s2){
+    var e=""
+    console.log(s.length+s2.length)
+    for(var i=s.length+s2.length;i<168;i++){
+        e+=" "
+    }
+    console.log(e.length)
+    return e
+}  
 
 function work(){
     var l = []
     for(var i=0;i<jsonData[0].work_experience.length;i++){
         l.push(
         {
-            text: jsonData[0].work_experience[i].company_name+", "+jsonData[0].work_experience[i].position,
+            text: [jsonData[0].work_experience[i].company_name+", "+jsonData[0].work_experience[i].position+"   ",
+            {text: "("+jsonData[0].work_experience[i].start_date+" - "+jsonData[0].work_experience[i].end_date+")", style:"dates"}],
             style: "subheader2"
         },{
 			ul: jsonData[0].work_experience[i].job_description.split('.'),            
@@ -84,11 +93,13 @@ function work(){
 }
 
 function projects(){
+
     var l = []
     for(var i=0;i<jsonData[0].projects.length;i++){
         l.push(
         {
-            text: jsonData[0].projects[i].project_name,
+            text: [jsonData[0].projects[i].project_name+"   ",
+            {text: "("+jsonData[0].projects[i].date+")", style:"dates"}],
             style: "subheader2"
         },{
 			ul: jsonData[0].projects[i].description.split('.'),            
@@ -108,8 +119,8 @@ function activities(){
     for(var i=0;i<jsonData[0].activities.length;i++){
         l.push(
         {
-            text: [jsonData[0].activities[i].activity_name,
-            { text:  jsonData[0].activities[i].start_date, fontSize: 15, alignment: 'right'}
+            text: [jsonData[0].activities[i].activity_name+"   ",
+            {text: "("+jsonData[0].activities[i].start_date+" - "+jsonData[0].activities[i].end_date+")", style:"dates"}
         ],
             style: "subheader2"
         },{
@@ -134,10 +145,10 @@ app.post('/pdf', (req, res, next)=>{
                 style: 'header'
             },
             {
-                text: jsonData[0].email+","+jsonData[0].phone+","+jsonData[0].town+'\n',
+                text: jsonData[0].email+"/"+jsonData[0].phone+"/"+jsonData[0].town,
                 style: 'subheader3'
             },
-            
+            '\n',
             {
                 text: "Education"+'\n',
                 style: 'subheader'
@@ -152,10 +163,10 @@ app.post('/pdf', (req, res, next)=>{
 
         },
         {
-            text: "Relevant Coursework: "+jsonData[0].courses+'\n',
+            text: "Relevant Coursework: "+jsonData[0].courses,
             style: 'subheader3'
         }
-        ,
+        ,'\n',
             {
                 text: "Experience",
                 style: 'subheader'
@@ -186,10 +197,6 @@ app.post('/pdf', (req, res, next)=>{
                 style: 'subheader3'
             },
 
-            {
-                text: 'It is possible to apply multiple styles, by passing an array. This paragraph uses two styles: quote and small. When multiple styles are provided, they are evaluated in the specified order which is important in case they define the same properties',
-                style: ['quote', 'small']
-            }
         ],
         styles: {
             header: {
@@ -212,6 +219,10 @@ app.post('/pdf', (req, res, next)=>{
                 fontSize: 10
             },
             subheader3:{
+                fontSize: 10
+            },
+            dates:{
+                alignment: 'right',
                 fontSize: 10
             }
         }      
