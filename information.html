@@ -2,22 +2,175 @@
 <html>
 <head>
   <meta charset="utf-8"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
   <h2>Pearl hacks woo</h2>
   <form id="example-form" method="post">
     
-   
-      <input type="text" name="yo" value="bar"/>
-    
-   
-    
-    <button action="" name="foo" value="send">Send</button>
+    <label for="first_name">First name: </label><br>
+      <input type="text" name="first_name" value="bar"/>
+      <br>
+      <label for="last_name">Last name: </label><br>
+      <input type="text" name="last_name" value="bar"/>
+      <br>
+      <label for="email">Email: </label><br>
+      <input type="text" name="email" value="bar"/>
+      <br>
+      <label for="phone">Phone:</label><br>
+      <input type="text" name="phone" value="bar"/>
+      <br>
+
+      <label for="town">Hometown:</label><br>
+
+      <input type="text" name="town" value="bar"/>
+      <br>
+      <label for="school">School:</label><br>
+      <input type="text" name="school" value="bar"/>
+      <br>
+      <label for="major">Major(s): </label><br>
+      
+      
+ 
+      <input id="major" type="text" name="major" value="bar"/>
+      <br>
+      <div id="majorsE">
+<br>
+      </div>
+      <button type="button" onclick="duplicate('#major', '#majorsE')"> add majors</button> <br>
+
+      <label for="minor">Minor(s): </label><br>
+
+      <input id="minors" type="text" name="minor" value="bar"/>
+      <div id="minorsE">
+
+        </div>
+        <br>
+      <button type="button" onclick="duplicate('#minors', '#minorsE')"> add minors</button>
+      <br>
+      
+      <label for="graduation_year">Expected Graduation Year: </label><br>
+      <input type="text" name="graduation_year" value="bar"/> <br> 
+
+      <label for="courses">Courses: </label><br>
+      <input type="text" name="courses" id="courses" value="bar"/> <br> 
+      <div id="coursesE">
+
+      </div>
+      <br> 
+      <button type="button" onclick="duplicate('#courses', '#coursesE')"> add courses</button>
+      <br> 
+      <label for="work_experiences">Work Experience: </label><br>
+
+<div id="work_experiences" name="work_experience">
+  <label for="work_experiences['company_name']">Company name: </label><br>
+      <input type="text" name="work_experience['company_name']" value="bar"/>
+      <br>
+      <label for="work_experience['position']">Position: </label><br>
+      <input type="text" name="work_experience['position']" value="bar"/>
+      <br>
+
+      <label for="work_experience['start_date']">Start Date: </label><br>
+      <input type="text" name="work_experience['start_date']" value="bar"/>
+</bar>
+<label for="work_experience['end_date']">End Date: </label><br>
+      <input type="text" name="work_experience['end_date']" value="bar"/>
+      <br>
+      <label for="work_experience['job_description']">Job Description: </label><br>
+      <input type="text" name="work_experience['job_description']" value="bar"/>
+
+</div>
+<br>
 
 
-    <button formaction="\pdf" name="oof" value="send">Send</button>
+<div id="total_work">
+</div>
+<br> 
+<button type="button" onclick="duplicate('#work_experiences', '#total_work')"> add work </button>
+<br> 
+<label for="projects">Projects: </label><br>
+     <div id="projects">
+      <label for="projects['project_name']"> Project Name: </label><br>
+<input type="text" name="projects['project_name']" value="bar"/>
+<br> 
+<label for="projects['date']">Project Date: </label><br>
+<input type="text" name="projects['date']" value="bar"/>
+<br> 
+<label for="projects['description']">Project Description: </label><br>
+<input type="text" name="projects['description']" value="bar"/>
+<br>
+
+<label for="projects['project_name']">Technologies used: </label><br>
+
+<input type="text" id="technologies" name="projects['technologies']" value="bar"/>
+<br>
+<div id="technologiesE">
+  <br>
+  <br>
+        </div>
+      <button type="button" onclick="duplicate('#technologies', '#technologiesE')"> add technologies</button>
+  <br> 
+</div>
+
+<div id="total_projects">
+</div>
+<br> 
+<button type="button" onclick="duplicate('#projects', '#total_projects')"> add projects </button>
+<br>
+<label for="activities">Activities: </label><br>
+<div id="activities">
+
+      <input type="text" name="activities['activity_name']" value="bar"/>
+      <input type="text" name="activities['start_name']" value="bar"/>
+      <input type="text" name="activities['end_name']" value="bar"/>
+      <input type="text" name="activities['description']" value="bar"/>
+      <br>
+    </div>
+    <div id="total_activities">
+
+    </div>
+
+    <button type="button" onclick="duplicate('#activities', '#total_activities')"> add activities </button>
+    <br> 
+    <label for="skills">Skills(s) :</label><br>
+      <input type="text" id="skills" name="skills" value="bar"/>
+      <br> 
+      <div id="skillsE">
+<br>
+      </div>
+
+    <button type="button" onclick="duplicate('#skills', '#skillsE')"> add skills</button>
+<br> 
+<label for="languages">Languages: </label><br>
+
+      <input type="text" id="languages" name="languages" value="bar"/>
+      <br>
+      <div id="languagesE">
+<br>
+      </div>
+    <button type="button" onclick="duplicate('#languages', '#languagesE')"> add languages</button>
+<br> 
+<label for="awards">Awards :</label><br>
+
+      <input type="text" id="awards" name="awards" value="bar"/>
+      <br>
+     <div id="awardsE">
+<br>
+        </div>
+      <button type="button" onclick="duplicate('#awards', '#awardsE')"> add awards</button>
+<br>
+   
+    
+    <button action="" name="foo" value="send">Generate Personal Website</button>
+<br>
+
+    <button formaction="\pdf" name="oof" value="send">Generate PDFs</button>
 
 </form>
-
+<script>
+  function duplicate(clone, to){
+  $( clone ).clone().appendTo(to);
+  }
+</script>
 </body>
 </html>

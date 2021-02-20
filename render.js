@@ -1,18 +1,28 @@
 
 'use strict';
-
 let jsonData = require('./info.json');
 var express = require('express');
 var path = require('path');
 var open = require('open');
 var fs = require('fs');
+var bodyParser = require('body-parser');
+var multer = require('multer');
+var upload = multer();
 
 
 
 
 var port = 3000;
 var app = express();
+app.use(bodyParser.json()); 
 
+// for parsing application/xwww-
+app.use(bodyParser.urlencoded({ extended: true })); 
+//form-urlencoded
+
+// for parsing multipart/form-data
+app.use(upload.array()); 
+app.use(express.static('public'));
 app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'information.html'));
 });
@@ -24,9 +34,22 @@ minors+= jsonData[1].minor[i] + ", ";
 var html = "<html><head> <title>" + jsonData[1].first_name +  "house </title> </head> <body style='background-color:teal'>" + jsonData[0].first_name + " " + jsonData[0].last_name + "'s website <br> <br>" +  " "+  jsonData[0].school+ "<br> <br>" + jsonData[0].major + " major with minors in " + minors + "</body> </html>"
 
 app.post('/', function(request, respond) {
+    var minors = "";
+    if(Array.isArray(request.body.minor)){
+    for(var i=0; i<request.body.minor.length; i++){
+    minors+= request.body.minor[i] + ", ";
+    }
+}
+else{
+    minors=request.body.minor;
+}
+    var htmlE = "<html><head> <title>" + request.body.first_name +  "house </title> </head> <body style='background-color:teal'>" + request.body.first_name + " " + request.body.last_name + "'s website <br> <br>" +  " "+  request.body.school+ "<br> <br>" + request.body.major + " major with minors in " + minors + "</body> </html>"
+    
+        console.log(request.body);
+      
+     
 
-
-    fs.writeFile('message.html', html, (err) => {
+    fs.writeFile('message.html', htmlE, (err) => {
         if (err) throw err;
         console.log('The file has been saved!');
 
