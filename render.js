@@ -93,6 +93,25 @@ function projects(){
     }
     return l
 }
+
+function activities(){
+    var l = []
+    for(var i=0;i<jsonData[0].activities.length;i++){
+        l.push(
+        {
+            text: [jsonData[0].activities[i].activity_name,
+            { text:  jsonData[0].activities[i].start_date, fontSize: 15, alignment: 'right'}
+        ],
+            style: "subheader2"
+        },{
+            text: jsonData[0].activities[i].description,
+            style: "subheader3"
+        }
+        )
+    }
+    return l
+}
+
 app.post('/pdf', (req, res, next)=>{
     //res.send('PDF');
 
@@ -138,7 +157,24 @@ app.post('/pdf', (req, res, next)=>{
                 style: 'subheader'
             },
             projects(),
-            
+            {
+                text: "Activities",
+                style: 'subheader'
+            },
+            activities(),
+            {
+                text: "Skills: "+jsonData[0].skills,
+                style: 'subheader3'
+            },
+            {
+                text: "Languages: "+jsonData[0].languages,
+                style: 'subheader3'
+            },
+            {
+                text: "Awards: "+jsonData[0].awards,
+                style: 'subheader3'
+            },
+
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam.\n\n',
             {
                 text: 'Subheader 1 - using subheader style',
@@ -161,7 +197,8 @@ app.post('/pdf', (req, res, next)=>{
         styles: {
             header: {
                 fontSize: 18,
-                bold: true
+                bold: true,
+                alignment: 'right'
             },
             subheader: {
                 fontSize: 15,
