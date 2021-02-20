@@ -67,7 +67,7 @@ function work(){
             text: jsonData[0].work_experience[i].company_name+", "+jsonData[0].work_experience[i].position,
             style: "subheader2"
         },{
-            text: jsonData.work_experience[i].job_description,
+            text: jsonData[0].work_experience[i].job_description,
             style: "subheader2"
         })
     }
