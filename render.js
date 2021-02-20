@@ -14,6 +14,7 @@ var app = express();
 app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'information.html'));
 });
+
 var minors = "";
 for(var i=0; i<jsonData[1].minor.length; i++){
 minors+= jsonData[1].minor[i] + ", ";
@@ -59,6 +60,59 @@ fs.readFile('./info.json', 'utf8', (err, jsonString) => {
 
 */
 
+function work(){
+    var l = []
+    for(var i=0;i<jsonData[0].work_experience.length;i++){
+        l.push(
+        {
+            text: jsonData[0].work_experience[i].company_name+", "+jsonData[0].work_experience[i].position,
+            style: "subheader2"
+        },{
+            text: jsonData[0].work_experience[i].job_description,
+            style: "subheader3"
+        })
+    }
+    return l
+}
+
+function projects(){
+    var l = []
+    for(var i=0;i<jsonData[0].projects.length;i++){
+        l.push(
+        {
+            text: jsonData[0].projects[i].project_name,
+            style: "subheader2"
+        },{
+            text: jsonData[0].projects[i].job_description,
+            style: "subheader3"
+        },
+        {
+        text: "Technologies: "+jsonData[0].projects[i].technologies,
+        style: "subheader3"
+        }
+        )
+    }
+    return l
+}
+
+function activities(){
+    var l = []
+    for(var i=0;i<jsonData[0].activities.length;i++){
+        l.push(
+        {
+            text: [jsonData[0].activities[i].activity_name,
+            { text:  jsonData[0].activities[i].start_date, fontSize: 15, alignment: 'right'}
+        ],
+            style: "subheader2"
+        },{
+            text: jsonData[0].activities[i].description,
+            style: "subheader3"
+        }
+        )
+    }
+    return l
+}
+
 app.post('/pdf', (req, res, next)=>{
     //res.send('PDF');
 
@@ -73,16 +127,55 @@ app.post('/pdf', (req, res, next)=>{
             },
             {
                 text: jsonData[0].email+","+jsonData[0].phone+","+jsonData[0].town,
-                style: 'small'
+                style: 'subheader3'
             },
+            
             {
                 text: "Education",
                 style: 'subheader'
             },
-            jsonData[0].school,
-            jsonData[0].major + "Minor in "+ jsonData[0].minor[0],
-                
-            
+            {
+            text:jsonData[0].school,
+            style:'subheader2'
+            },
+            {
+            text:"Bachelor of Science " + jsonData[0].major + ", Minor in "+ jsonData[0].minor[0],
+            style:'subheader3'
+
+        },
+        {
+            text: "Relevant Coursework: "+jsonData[0].courses,
+            style: 'subheader3'
+        }
+        ,
+            {
+                text: "Experience",
+                style: 'subheader'
+            },
+            work(),
+            {
+                text: "Projects",
+                style: 'subheader'
+            },
+            projects(),
+            {
+                text: "Activities",
+                style: 'subheader'
+            },
+            activities(),
+            {
+                text: "Skills: "+jsonData[0].skills,
+                style: 'subheader3'
+            },
+            {
+                text: "Languages: "+jsonData[0].languages,
+                style: 'subheader3'
+            },
+            {
+                text: "Awards: "+jsonData[0].awards,
+                style: 'subheader3'
+            },
+
             'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Confectum ponit legam, perferendis nomine miserum, animi. Moveat nesciunt triari naturam.\n\n',
             {
                 text: 'Subheader 1 - using subheader style',
@@ -105,7 +198,8 @@ app.post('/pdf', (req, res, next)=>{
         styles: {
             header: {
                 fontSize: 18,
-                bold: true
+                bold: true,
+                alignment: 'right'
             },
             subheader: {
                 fontSize: 15,
@@ -116,6 +210,13 @@ app.post('/pdf', (req, res, next)=>{
             },
             small: {
                 fontSize: 8
+            },
+            subheader2:{
+                bold: true,
+                fontSize: 10
+            },
+            subheader3:{
+                fontSize: 10
             }
         }      
     };
