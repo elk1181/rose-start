@@ -170,7 +170,7 @@ else{
 let webActivities = function(){
     let arr = [];
 if(Array.isArray(request.body["activities"]["'activity_name'"])){
-    for(var i=0;i<request.body["activities"].length;i++){
+    for(var i=0;i<request.body["activities"]["'activity_name'"].length;i++){
         arr.push("<h2 style='text-align:center;'>" + request.body["activities"]["'activity_name'"][i] + "</h2>"
         + "<p style='font-style:italic;text-align:center;'>" + request.body["activities"]["'start_date'"][i] + "-" + request.body["activities"]["'end_date'"][i] + "</p>"
         + "<p style='text-align:center;'>" + request.body["activities"]["'description'"][i] + "</p>");
