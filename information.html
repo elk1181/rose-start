@@ -3,17 +3,84 @@
 <head>
   <meta charset="utf-8"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <style> 
+*{
+  background-color:cornflowerblue;
+
+}
+h2{
+  box-shadow:inset 0px 1px 0px 0px #e184f3;
+	background:linear-gradient(to bottom, blue 5%, blue 100%);
+	background-color:blue;
+	border-radius:6px;
+	border:1px solid blue;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:48px;
+	font-weight:bold;
+	padding:6px 24px;
+  text-decoration:none;
+  text-align : center;
+	text-shadow:0px 1px 0px #9b14b3;
+}
+input{
+  width:200px;
+}
+label{
+	box-shadow:inset 0px 1px 0px 0px #e184f3;
+	background:linear-gradient(to bottom, blue 5%, blue 100%);
+	background-color:blue;
+	border-radius:6px;
+	border:1px solid blue;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #9b14b3;
+}
+button {
+	box-shadow:inset 0px 1px 0px 0px #e184f3;
+	background:linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
+	background-color:#c123de;
+	border-radius:6px;
+	border:1px solid #a511c0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #9b14b3;
+}
+button:hover {
+	background:linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
+	background-color:#a20dbd;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+</style>
 </head>
 <body>
-  <h2>Pearl hacks woo</h2>
+  <h2>Form for Personal Website and Resume render</h2>
   <form id="example-form" method="post">
     
-    <label for="first_name">First name: </label><br>
-      <input type="text" name="first_name" value="bar"/>
+    <label for="first_name">First name: </label> &nbsp;  &nbsp; &nbsp; &nbsp; <label for="last_name">Last name: </label> <br>
+    <input type="text" name="first_name" value="bar"/> &nbsp;  <input type="text" name="last_name" value="bar"/>
       <br>
-      <label for="last_name">Last name: </label><br>
-      <input type="text" name="last_name" value="bar"/>
-      <br>
+     
       <label for="email">Email: </label><br>
       <input type="text" name="email" value="bar"/>
       <br>
@@ -31,20 +98,24 @@
       <label for="major">Major(s): </label><br>
       
       
- 
-      <input id="major" type="text" name="major" value="bar"/>
+ <div id="major">
+      <input  type="text" name="major" value="bar"/>
       <br>
+    </div>
       <div id="majorsE">
-<br>
+
       </div>
       <button type="button" onclick="duplicate('#major', '#majorsE')"> add majors</button> <br>
 
       <label for="minor">Minor(s): </label><br>
-
-      <input id="minors" type="text" name="minor" value="bar"/>
+<div id="minors">
+      <input  type="text" name="minor" value="bar"/>
+      <br>
+    </div>
       <div id="minorsE">
 
         </div>
+      
         <br>
       <button type="button" onclick="duplicate('#minors', '#minorsE')"> add minors</button>
       <br>
@@ -52,8 +123,13 @@
       <label for="graduation_year">Expected Graduation Year: </label><br>
       <input type="text" name="graduation_year" value="bar"/> <br> 
 
+
       <label for="courses">Courses: </label><br>
-      <input type="text" name="courses" id="courses" value="bar"/> <br> 
+      <div id="courses">
+      <input type="text" name="courses"  value="bar"/>
+       <br> 
+
+    </div>
       <div id="coursesE">
 
       </div>
@@ -72,7 +148,7 @@
 
       <label for="work_experience['start_date']">Start Date: </label><br>
       <input type="text" name="work_experience['start_date']" value="bar"/>
-</bar>
+<br>
 <label for="work_experience['end_date']">End Date: </label><br>
       <input type="text" name="work_experience['end_date']" value="bar"/>
       <br>
@@ -100,17 +176,7 @@
 <input type="text" name="projects['description']" value="bar"/>
 <br>
 
-<label for="projects['project_name']">Technologies used: </label><br>
 
-<input type="text" id="technologies" name="projects['technologies']" value="bar"/>
-<br>
-<div id="technologiesE">
-  <br>
-  <br>
-        </div>
-      <button type="button" onclick="duplicate('#technologies', '#technologiesE')"> add technologies</button>
-  <br> 
-</div>
 
 <div id="total_projects">
 </div>
@@ -119,10 +185,16 @@
 <br>
 <label for="activities">Activities: </label><br>
 <div id="activities">
-
+  <label for="activities['activity_name']">Activity Name: </label><br>
       <input type="text" name="activities['activity_name']" value="bar"/>
-      <input type="text" name="activities['start_name']" value="bar"/>
-      <input type="text" name="activities['end_name']" value="bar"/>
+      <br>
+      <label for="activities['start_date">Start Date: </label><br>
+      <input type="text" name="activities['start_date']" value="bar"/>
+      <br>
+      <label for="activities['end_date']">End Date: </label><br>
+      <input type="text" name="activities['end_date']" value="bar"/>
+      <br>
+      <label for="activities['description']">Description: </label><br>
       <input type="text" name="activities['description']" value="bar"/>
       <br>
     </div>
@@ -133,36 +205,41 @@
     <button type="button" onclick="duplicate('#activities', '#total_activities')"> add activities </button>
     <br> 
     <label for="skills">Skills(s) :</label><br>
-      <input type="text" id="skills" name="skills" value="bar"/>
+    <div id="skills">
+      <input type="text" name="skills" value="bar"/>
       <br> 
+    </div>
       <div id="skillsE">
-<br>
+
       </div>
 
     <button type="button" onclick="duplicate('#skills', '#skillsE')"> add skills</button>
 <br> 
 <label for="languages">Languages: </label><br>
-
-      <input type="text" id="languages" name="languages" value="bar"/>
+<div id="languages">
+      <input type="text" name="languages" value="bar"/>
       <br>
+    </div>
       <div id="languagesE">
-<br>
+
       </div>
     <button type="button" onclick="duplicate('#languages', '#languagesE')"> add languages</button>
 <br> 
-<label for="awards">Awards :</label><br>
-
-      <input type="text" id="awards" name="awards" value="bar"/>
+<label for="awards">Awards: </label><br>
+<div id="awards">
+      <input type="text" name="awards" value="bar"/>
       <br>
+    </div>
      <div id="awardsE">
-<br>
+
         </div>
       <button type="button" onclick="duplicate('#awards', '#awardsE')"> add awards</button>
 <br>
-   
+   <br> 
     
     <button action="" name="foo" value="send">Generate Personal Website</button>
-<br>
+&nbsp; 
+&nbsp;
 
     <button formaction="\pdf" name="oof" value="send">Generate PDFs</button>
 
