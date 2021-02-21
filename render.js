@@ -223,7 +223,7 @@ app.listen(port, function(err){
     }else{
         open('http://localhost:' + port);
     }
-} ));
+} );
 
 var flow_log;
 const router = express.Router();
