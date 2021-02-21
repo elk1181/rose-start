@@ -342,7 +342,7 @@ app.post('/pdf', (req, res, next)=>{
                 style: 'header'
             },
             {
-                text: req.body.email+"/"+req.body.phone+"/"+req.body.town + "/" + req.body.pronouns,
+                text: req.body.email+"/"+req.body.phone+"/"+req.body.town+"/"+req.body.pronouns,
                 style: 'subheader3'
             },
             '\n',

@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JavaScript Radio Buttons</title>
-</head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="node_modules/bulma/css/bulma.css"/>
+        <link rel="stylesheet" href="style.css"/>
+        <title>JavaScript Radio Buttons</title>
+    </head>
+
 <body>
+    <div class="hero-body">
     <form>
   
         <p>What is the efficiency of bubble sort?</p>
@@ -15,19 +21,24 @@
 
         <input type="button" id="btn" value="Show Selected Value">
     </form>
+    </div>
     <p id="demo"></p>
+    <div class="hero-body">
     <form>
   
-            <p>What is the maximum efficiency of quick sort?</p>
-            <input type="radio" name="choice" value="A"> O(n^2) <br>
-            <input type="radio" name="choice" value="B"> O(n) <br>
-            <input type="radio" name="choice" value="C"> O(n*log(n)) <br>
-            <input type="radio" name="choice" value="D"> O(n!) <br>
+            <p>Which of the following data structures has a O(1) access time?</p>
+            <input type="radio" name="choice" value="A"> Binary Search Trees <br>
+            <input type="radio" name="choice" value="B"> Lists <br>
+            <input type="radio" name="choice" value="C"> Heaps <br>
+            <input type="radio" name="choice" value="D"> Arrays <br>
     
     
             <input type="button" id="btn2" value="Show Selected Value">
         </form>
+    </div>
         <p id="demo2"></p>
+        <div class="hero-body">
+
         <form>
   
                 <p>What is the maximum efficiency of quick sort?</p>
@@ -39,7 +50,22 @@
         
                 <input type="button" id="btn3" value="Show Selected Value">
             </form>
+            </div>
             <p id="demo3"></p>
+            <div class="hero-body">
+            <form>
+  
+                    <p>Which data structure utilizes Djikstra's Algorithm?</p>
+                    <input type="radio" name="choice" value="A"> Binary Search Tree <br>
+                    <input type="radio" name="choice" value="B"> Graph <br>
+                    <input type="radio" name="choice" value="C"> Heap <br>
+                    <input type="radio" name="choice" value="D"> Hash Table <br>
+            
+            
+                    <input type="button" id="btn4" value="Show Selected Value">
+                </form>
+                <p id="demo4"></p>
+                </div>
     <script>
         const btn = document.querySelector('#btn');
         // handle click button
@@ -78,7 +104,7 @@
                 }
                 //alert(selectedValue);
     
-                if(selectedValue==='C'){
+                if(selectedValue==='D'){
                     document.getElementById("demo2").innerHTML = "This is correct";
     
                 }
@@ -101,12 +127,35 @@
                 }
                 //alert(selectedValue);
     
-                if(selectedValue==='D'){
+                if(selectedValue==='C'){
                     document.getElementById("demo3").innerHTML = "This is correct";
     
                 }
                 else{
                     document.getElementById("demo3").innerHTML = "This is incorrect, choose again";
+    
+                }
+    
+            };
+            const btn4 = document.querySelector('#btn4');
+            // handle click button
+            btn4.onclick = function () {
+                const rbs = document.querySelectorAll('input[name="choice"]');
+                let selectedValue;
+                for (const rb of rbs) {
+                    if (rb.checked) {
+                        selectedValue = rb.value;
+                        break;
+                    }
+                }
+                //alert(selectedValue);
+    
+                if(selectedValue==='B'){
+                    document.getElementById("demo4").innerHTML = "This is correct";
+    
+                }
+                else{
+                    document.getElementById("demo4").innerHTML = "This is incorrect, choose again";
     
                 }
     
