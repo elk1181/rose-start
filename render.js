@@ -22,8 +22,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // for parsing multipart/form-data
 app.use(upload.array()); 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res){
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+app.get('/open', function(req, res){
     res.sendFile(path.join(__dirname, 'information.html'));
 });
 
@@ -35,8 +38,7 @@ app.get('/', function(req, res){
 
 
 
-
-app.post('/', function(request, respond) {
+app.post('/web', function(request, respond) {
 
 //String construction stuff
 
@@ -186,7 +188,7 @@ else{
 //Full css for generated website
 var htmlE = "<html><head> <title>" + request.body.first_name + 
 "house </title> </head> <body style='background-color:#fff0f5;'><h1 style='text-align:center;border-style:outset;padding:5px;background-color:#87CEFA;'>"
-+ request.body.first_name + " " + request.body.last_name + "'s website" +
++ request.body.first_name + " " + request.body.last_name + "'s website" + "<p style='font-style:italic;font-size:75%'>" + request.body.pronouns +
 "<p style='font-style:italic;font-size:75%'>" + request.body.email +
 "</p><h2 style ='text-align:center;'>" + request.body.school +
 "</h2><h3 style='text-align:center;font-style:italic;'>" + request.body.major +
@@ -340,7 +342,7 @@ app.post('/pdf', (req, res, next)=>{
                 style: 'header'
             },
             {
-                text: req.body.email+"/"+req.body.phone+"/"+req.body.town,
+                text: req.body.email+"/"+req.body.phone+"/"+req.body.town + "/" + req.body.pronouns,
                 style: 'subheader3'
             },
             '\n',
@@ -424,11 +426,12 @@ app.post('/pdf', (req, res, next)=>{
     };
 
     const pdfDoc = pdfMake.createPdf(documentDefinition);
+    let fileN = req.body.last_name + '.pdf';
     pdfDoc.getBase64((data)=>{
         res.writeHead(200, 
         {
             'Content-Type': 'application/pdf',
-            'Content-Disposition':'attachment;filename="filename.pdf"'
+            'Content-Disposition':'attachment;filename='+ fileN
         });
 
         const download = Buffer.from(data.toString('utf-8'), 'base64');
