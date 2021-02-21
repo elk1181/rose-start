@@ -4,7 +4,8 @@
   "description": "Website for Pearl Hacks that provides resources and opportunities for those who identify as women or non-binary interested in a career in computer science",
   "main": "render.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node render.js"
   },
   "repository": {
     "type": "git",

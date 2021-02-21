@@ -12,16 +12,16 @@ var upload = multer();
 
 
 
-var port = 3000;
+var port = process.env.PORT || 3000;
 var app = express();
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 // for parsing application/xwww-
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 //form-urlencoded
 
 // for parsing multipart/form-data
-app.use(upload.array()); 
+app.use(upload.array());
 app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res){
     res.sendFile(path.join(__dirname, 'index.html'));
@@ -42,7 +42,7 @@ app.post('/web', function(request, respond) {
 
 //String construction stuff
 
- 
+
 var minors = "<p style=text-align:center;>";
 if(Array.isArray(request.body.minor)){
     for(var i=0; i<request.body.minor.length; i++){
@@ -146,9 +146,9 @@ let floatingBox = function(firstName, lastName, email){
 }
 
 let webProjects = function(){
-    let arr = [];  
+    let arr = [];
 if(Array.isArray(request.body["projects"]["'project_name'"])){
-  
+
      for(var i=0;i<request.body["projects"]["'project_name'"].length;i++){
                 arr.push("<h2 style='text-align:center;'>" + request.body["projects"]["'project_name'"][i] + "</h2>"
                 + "<p style='font-style:italic;text-align:center;'>" + request.body["projects"]["'date'"][i] + "</p>"
@@ -170,7 +170,7 @@ else{
 let webActivities = function(){
     let arr = [];
 if(Array.isArray(request.body["activities"]["'activity_name'"])){
-    for(var i=0;i<request.body["activities"].length;i++){
+    for(var i=0;i<request.body["activities"]["'activity_name'"].length;i++){
         arr.push("<h2 style='text-align:center;'>" + request.body["activities"]["'activity_name'"][i] + "</h2>"
         + "<p style='font-style:italic;text-align:center;'>" + request.body["activities"]["'start_date'"][i] + "-" + request.body["activities"]["'end_date'"][i] + "</p>"
         + "<p style='text-align:center;'>" + request.body["activities"]["'description'"][i] + "</p>");
@@ -186,14 +186,14 @@ else{
 
 
 //Full css for generated website
-var htmlE = "<html><head> <title>" + request.body.first_name + 
+var htmlE = "<html><head> <title>" + request.body.first_name +
 "house </title> </head> <body style='background-color:#fff0f5;'><h1 style='text-align:center;border-style:outset;padding:5px;background-color:#87CEFA;'>"
 + request.body.first_name + " " + request.body.last_name + "'s website" + "<p style='font-style:italic;font-size:75%'>" + request.body.pronouns +
 "<p style='font-style:italic;font-size:75%'>" + request.body.email +
 "</p><h2 style ='text-align:center;'>" + request.body.school +
 "</h2><h3 style='text-align:center;font-style:italic;'>" + request.body.major +
 " major with minors in " + minors + "</h3>" + "</h1>" +
-floatingBox(request.body.first_name, request.body.last_name, request.body.email) + 
+floatingBox(request.body.first_name, request.body.last_name, request.body.email) +
 h2titles("Experience") + webJobs() +
 h2titles("Projects") + webProjects() +
 h2titles("Activities") + webActivities() +
@@ -204,7 +204,7 @@ h2titles("Awards") + webAwards + "</body> </html>"
 
         console.log(request.body);
         console.log(request.body["projects"]["'project_name'"]);
-     
+
         const file = request.body.last_name + '.html';
     fs.writeFile(file, htmlE, (err) => {
         if (err) throw err;
@@ -223,7 +223,7 @@ app.listen(port, function(err){
     }else{
         open('http://localhost:' + port);
     }
-});
+} );
 
 var flow_log;
 const router = express.Router();
@@ -239,7 +239,7 @@ fs.readFile('./info.json', 'utf8', (err, jsonString) => {
         return
     }
     flow_log = JSON.parse(jsonString);
-    console.log('File data:', flow_log['first_name']) 
+    console.log('File data:', flow_log['first_name'])
 })
 
 */
@@ -252,7 +252,7 @@ function spaces(s,s2){
     }
     console.log(e.length)
     return e
-}  
+}
 
 function work(){
     var l = []
@@ -270,10 +270,10 @@ function work(){
             {text: "("+jsonData["work_experience"]["'start_date'"][i]+" - "+jsonData["work_experience"]["'end_date'"][i]+")", style:"dates"}],
             style: "subheader2"
         },{
-			ul: jsonData["work_experience"]["'job_description'"][i].split('.'),            
+			ul: jsonData["work_experience"]["'job_description'"][i].split('.'),
             style: "subheader3"
         }
-        
+
         )
     }
     return l
@@ -295,7 +295,7 @@ function projects(){
             {text: "("+jsonData["projects"]["'date'"][i]+")", style:"dates"}],
             style: "subheader2"
         },{
-			ul: jsonData["projects"]["'description'"][i].split('.'),            
+			ul: jsonData["projects"]["'description'"][i].split('.'),
             style: "subheader3"
         }
         )
@@ -320,7 +320,7 @@ function activities(){
         ],
             style: "subheader2"
         },{
-			ul: jsonData["activities"]["'description'"][i].split('.'),            
+			ul: jsonData["activities"]["'description'"][i].split('.'),
             style: "subheader3"
         }
         )
@@ -368,7 +368,7 @@ app.post('/pdf', (req, res, next)=>{
                 text: "Experience",
                 style: 'subheader'
             },
-        
+
             work()
             ,'\n',
             {
@@ -422,13 +422,13 @@ app.post('/pdf', (req, res, next)=>{
                 alignment: 'right',
                 fontSize: 10
             }
-        }      
+        }
     };
 
     const pdfDoc = pdfMake.createPdf(documentDefinition);
     let fileN = req.body.last_name + '.pdf';
     pdfDoc.getBase64((data)=>{
-        res.writeHead(200, 
+        res.writeHead(200,
         {
             'Content-Type': 'application/pdf',
             'Content-Disposition':'attachment;filename='+ fileN
