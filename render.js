@@ -1,7 +1,7 @@
 
 'use strict';
 
-let jsonData = require('./info2.json');
+//let jsonData = require('./info2.json');
 var express = require('express');
 var path = require('path');
 var open = require('open');
@@ -9,7 +9,6 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
-console.log("hi");
 
 
 
@@ -255,14 +254,21 @@ function spaces(s,s2){
 
 function work(){
     var l = []
-    for(var i=0;i<jsonData[0].work_experience.company_name.length;i++){
+    if(!Array.isArray(jsonData["work_experience"]["'company_name'"])){
+        jsonData["work_experience"]["'company_name'"] = [jsonData["work_experience"]["'company_name'"]]
+        jsonData["work_experience"]["'position'"] = [jsonData["work_experience"]["'position'"]]
+        jsonData["work_experience"]["'start_date'"] = [jsonData["work_experience"]["'start_date'"]]
+        jsonData["work_experience"]["'end_date'"] = [jsonData["work_experience"]["'end_date'"]]
+        jsonData["work_experience"]["'job_description'"] = [jsonData["work_experience"]["'job_description'"]]
+    }
+        for(var i=0;i<jsonData["work_experience"]["'company_name'"].length;i++){
         l.push(
         {
-            text: [jsonData[0].work_experience.company_name[i]+", "+jsonData[0].work_experience.position[i]+"   ",
-            {text: "("+jsonData[0].work_experience.start_date[i]+" - "+jsonData[0].work_experience.end_date[i]+")", style:"dates"}],
+            text: [jsonData["work_experience"]["'company_name'"][i]+", "+jsonData["work_experience"]["'position'"][i]+"   ",
+            {text: "("+jsonData["work_experience"]["'start_date'"][i]+" - "+jsonData["work_experience"]["'end_date'"][i]+")", style:"dates"}],
             style: "subheader2"
         },{
-			ul: jsonData[0].work_experience.job_description[i].split('.'),            
+			ul: jsonData["work_experience"]["'job_description'"][i].split('.'),            
             style: "subheader3"
         }
         
@@ -274,19 +280,21 @@ function work(){
 function projects(){
 
     var l = []
-    for(var i=0;i<jsonData[0].projects.project_name.length;i++){
+    if(!Array.isArray(jsonData["projects"]["'project_name'"])){
+        jsonData["projects"]["'project_name'"] = [jsonData["projects"]["'project_name'"]]
+        jsonData["projects"]["'description'"] = [jsonData["projects"]["'description'"]]
+        jsonData["projects"]["'date'"] = [jsonData["projects"]["'date'"]]
+
+    }
+    for(var i=0;i<jsonData["projects"]["'project_name'"].length;i++){
         l.push(
         {
-            text: [jsonData[0].projects.project_name[i]+"   ",
-            {text: "("+jsonData[0].projects.date[i]+")", style:"dates"}],
+            text: [jsonData["projects"]["'project_name'"][i]+"   ",
+            {text: "("+jsonData["projects"]["'date'"][i]+")", style:"dates"}],
             style: "subheader2"
         },{
-			ul: jsonData[0].projects.description[i].split('.'),            
+			ul: jsonData["projects"]["'description'"][i].split('.'),            
             style: "subheader3"
-        },
-        {
-        text: "Technologies: "+jsonData[0].projects.technologies[i],
-        style: "subheader3"
         }
         )
     }
@@ -294,38 +302,45 @@ function projects(){
 }
 
 function activities(){
+    if(!Array.isArray(["activities"]["'activity_name'"])){
+        jsonData["activities"]["'activity_name'"] = [jsonData["activities"]["'activity_name'"]]
+        jsonData["activities"]["'start_date'"] = [jsonData["activities"]["'start_date'"]]
+        jsonData["activities"]["'end_date'"] = [jsonData["activities"]["'end_date'"]]
+        jsonData["activities"]["'description'"] = [jsonData["activities"]["'description'"]]
+
+    }
     var l = []
-    for(var i=0;i<jsonData[0].activities.activity_name.length;i++){
+    for(var i=0;i<jsonData["activities"]["'activity_name'"].length;i++){
         l.push(
         {
-            text: [jsonData[0].activities.activity_name[i]+"   ",
-            {text: "("+jsonData[0].activities.start_date[i]+" - "+jsonData[0].activities.end_date[i]+")", style:"dates"}
+            text: [jsonData["activities"]["'activity_name'"][i]+"   ",
+            {text: "("+jsonData["activities"]["'start_date'"][i]+" - "+jsonData["activities"]["'end_date'"][i]+")", style:"dates"}
         ],
             style: "subheader2"
         },{
-			ul: jsonData[0].activities.description[i].split('.'),            
+			ul: jsonData["activities"]["'description'"][i].split('.'),            
             style: "subheader3"
         }
         )
     }
     return l
 }
-
+var jsonData;
 app.post('/pdf', (req, res, next)=>{
     //res.send('PDF');
 
     //const fname = req.body.fname;
     //const lname = req.body.lname;
-    
+    jsonData = req.body;
 
     var documentDefinition = {
         content: [
             {
-                text: jsonData[0].first_name+" "+jsonData[0].last_name,
+                text: req.body.first_name+" "+req.body.last_name,
                 style: 'header'
             },
             {
-                text: jsonData[0].email+"/"+jsonData[0].phone+"/"+jsonData[0].town,
+                text: req.body.email+"/"+req.body.phone+"/"+req.body.town,
                 style: 'subheader3'
             },
             '\n',
@@ -334,16 +349,16 @@ app.post('/pdf', (req, res, next)=>{
                 style: 'subheader'
             },
             {
-            text:jsonData[0].school,
+            text:req.body.school,
             style:'subheader2'
             },
             {
-            text:"Bachelor of Science " + jsonData[0].major + ", Minor in "+ jsonData[0].minor[0],
+            text:"Bachelor's in " + req.body.major + ", Minor in "+ req.body.minor,
             style:'subheader3'
 
         },
         {
-            text: "Relevant Coursework: "+jsonData[0].courses,
+            text: "Relevant Coursework: "+req.body.courses,
             style: 'subheader3'
         }
         ,'\n',
@@ -365,15 +380,15 @@ app.post('/pdf', (req, res, next)=>{
             },
             activities(),'\n',
             {
-                text: "Skills: "+jsonData[0].skills,
+                text: "Skills: "+req.body.skills,
                 style: 'subheader3'
             },
             {
-                text: "Languages: "+jsonData[0].languages,
+                text: "Languages: "+req.body.languages,
                 style: 'subheader3'
             },
             {
-                text: "Awards: "+jsonData[0].awards,
+                text: "Awards: "+req.body.awards,
                 style: 'subheader3'
             },
 
