@@ -11869,7 +11869,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
                             <input type="radio" name="choice" value="D"> O(n!) <br>
                     
                     
-                            <input type="button" id="btn" value="Show Selected Value">
+                            <input type="button" id="btn" value="Submit">
                         </form>
                         </div>
                         <p id="demo"></p>
@@ -11877,13 +11877,12 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
                         <form>
                       
                                 <p>Which of the following data structures has a O(1) access time?</p>
-                                <input type="radio" name="choice" value="A"> Binary Search Trees <br>
-                                <input type="radio" name="choice" value="B"> Lists <br>
-                                <input type="radio" name="choice" value="C"> Heaps <br>
-                                <input type="radio" name="choice" value="D"> Arrays <br>
+                                <input type="radio" name="choice2" value="A"> Binary Search Trees <br>
+                                <input type="radio" name="choice2" value="B"> Lists <br>
+                                <input type="radio" name="choice2" value="C"> Heaps <br>
+                                <input type="radio" name="choice2" value="D"> Arrays <br>
                         
-                        
-                                <input type="button" id="btn2" value="Show Selected Value">
+                                <input type="button" id="btn2" value="Submit">
                             </form>
                         </div>
                             <p id="demo2"></p>
@@ -11892,13 +11891,13 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
                             <form>
                       
                                     <p>What is the maximum efficiency of quick sort?</p>
-                                    <input type="radio" name="choice" value="A"> O(n^2) <br>
-                                    <input type="radio" name="choice" value="B"> O(n) <br>
-                                    <input type="radio" name="choice" value="C"> O(n*log(n)) <br>
-                                    <input type="radio" name="choice" value="D"> O(n!) <br>
+                                    <input type="radio" name="choice3" value="A"> O(n^2) <br>
+                                    <input type="radio" name="choice3" value="B"> O(n) <br>
+                                    <input type="radio" name="choice3" value="C"> O(n*log(n)) <br>
+                                    <input type="radio" name="choice3" value="D"> O(n!) <br>
                             
                             
-                                    <input type="button" id="btn3" value="Show Selected Value">
+                                    <input type="button" id="btn3" value="Submit">
                                 </form>
                                 </div>
                                 <p id="demo3"></p>
@@ -11906,13 +11905,13 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
                                 <form>
                       
                                         <p>Which data structure utilizes Djikstra's Algorithm?</p>
-                                        <input type="radio" name="choice" value="A"> Binary Search Tree <br>
-                                        <input type="radio" name="choice" value="B"> Graph <br>
-                                        <input type="radio" name="choice" value="C"> Heap <br>
-                                        <input type="radio" name="choice" value="D"> Hash Table <br>
+                                        <input type="radio" name="choice4" value="A"> Binary Search Tree <br>
+                                        <input type="radio" name="choice4" value="B"> Graph <br>
+                                        <input type="radio" name="choice4" value="C"> Heap <br>
+                                        <input type="radio" name="choice4" value="D"> Hash Table <br>
                                 
                                 
-                                        <input type="button" id="btn4" value="Show Selected Value">
+                                        <input type="button" id="btn4" value="Submit">
                                     </form>
                                     <p id="demo4"></p>
                                     </div>
@@ -11944,7 +11943,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
                                 const btn2 = document.querySelector('#btn2');
                                 // handle click button
                                 btn2.onclick = function () {
-                                    const rbs = document.querySelectorAll('input[name="choice"]');
+                                    const rbs = document.querySelectorAll('input[name="choice2"]');
                                     let selectedValue;
                                     for (const rb of rbs) {
                                         if (rb.checked) {
@@ -11967,7 +11966,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
                                 const btn3 = document.querySelector('#btn3');
                                 // handle click button
                                 btn3.onclick = function () {
-                                    const rbs = document.querySelectorAll('input[name="choice"]');
+                                    const rbs = document.querySelectorAll('input[name="choice3"]');
                                     let selectedValue;
                                     for (const rb of rbs) {
                                         if (rb.checked) {
@@ -11990,7 +11989,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
                                 const btn4 = document.querySelector('#btn4');
                                 // handle click button
                                 btn4.onclick = function () {
-                                    const rbs = document.querySelectorAll('input[name="choice"]');
+                                    const rbs = document.querySelectorAll('input[name="choice4"]');
                                     let selectedValue;
                                     for (const rb of rbs) {
                                         if (rb.checked) {
