@@ -7,11 +7,10 @@ h1.title {
     font-size: 4em;
 }
 
-div.hero-body {
+div.hero-head {
     background-color: mediumpurple;
 }
 
-.justify-center .column{
-    display: flex !important;
-    justify-content: center !important;
+div.hero-foot {
+    background-color: mediumpurple;
 }
