@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="node_modules/bulma/css/bulma.css"/>
+        <link rel="stylesheet" href="style.css"/>
+        <title>RoseStart</title>
+    </head>
+    <body>
+        
+            <form action="grade.php" method="post" id="quiz">
+                    <li>
+
+                            <h3>CSS Stands for...</h3>
+                            
+                            <div>
+                                <input type="radio" name="question-1-answers" id="question-1-answers-A" value="A" />
+                                <label for="question-1-answers-A">A) Computer Styled Sections </label>
+                            </div>
+                            
+                            <div>
+                                <input type="radio" name="question-1-answers" id="question-1-answers-B" value="B" />
+                                <label for="question-1-answers-B">B) Cascading Style Sheets</label>
+                            </div>
+                            
+                            <div>
+                                <input type="radio" name="question-1-answers" id="question-1-answers-C" value="C" />
+                                <label for="question-1-answers-C">C) Crazy Solid Shapes</label>
+                            </div>
+                            
+                            <div>
+                                <input type="radio" name="question-1-answers" id="question-1-answers-D" value="D" />
+                                <label for="question-1-answers-D">D) None of the above</label>
+                            </div>
+                        
+                        </li>
+                        <button type="button" onclick="myFunction()">Submit</button>
+
+            </form>
+            <script>
+                    function myFunction() {
+                      var x, text;
+                    
+                      // Get the value of the input field with id="numb"
+                      x = document.getElementById("numb").value;
+                    
+                      // If x is Not a Number or less than one or greater than 10
+                      if (isNaN(x) || x < 1 || x > 10) {
+                        text = "Input not valid";
+                      } else {
+                        text = "Input OK";
+                      }
+                      document.getElementById("demo").innerHTML = text;
+                    }
+                    </script>
+        </body>
+</html>

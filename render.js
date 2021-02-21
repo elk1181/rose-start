@@ -9,7 +9,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var upload = multer();
-
+console.log("hi");
 
 
 
