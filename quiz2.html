@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Radio Buttons</title>
+</head>
+<body>
+    <form>
+  
+        <p>What is the efficiency of bubble sort?</p>
+        <input type="radio" name="choice" value="A"> O(n^2) <br>
+        <input type="radio" name="choice" value="B"> O(n) <br>
+        <input type="radio" name="choice" value="C"> O(n*log(n)) <br>
+        <input type="radio" name="choice" value="D"> O(n!) <br>
+
+
+        <input type="button" id="btn" value="Show Selected Value">
+    </form>
+    <p id="demo"></p>
+    <form>
+  
+            <p>What is the maximum efficiency of quick sort?</p>
+            <input type="radio" name="choice" value="A"> O(n^2) <br>
+            <input type="radio" name="choice" value="B"> O(n) <br>
+            <input type="radio" name="choice" value="C"> O(n*log(n)) <br>
+            <input type="radio" name="choice" value="D"> O(n!) <br>
+    
+    
+            <input type="button" id="btn2" value="Show Selected Value">
+        </form>
+        <p id="demo2"></p>
+        <form>
+  
+                <p>What is the maximum efficiency of quick sort?</p>
+                <input type="radio" name="choice" value="A"> O(n^2) <br>
+                <input type="radio" name="choice" value="B"> O(n) <br>
+                <input type="radio" name="choice" value="C"> O(n*log(n)) <br>
+                <input type="radio" name="choice" value="D"> O(n!) <br>
+        
+        
+                <input type="button" id="btn3" value="Show Selected Value">
+            </form>
+            <p id="demo3"></p>
+    <script>
+        const btn = document.querySelector('#btn');
+        // handle click button
+        btn.onclick = function () {
+            const rbs = document.querySelectorAll('input[name="choice"]');
+            let selectedValue;
+            for (const rb of rbs) {
+                if (rb.checked) {
+                    selectedValue = rb.value;
+                    break;
+                }
+            }
+            //alert(selectedValue);
+
+            if(selectedValue==='A'){
+                document.getElementById("demo").innerHTML = "This is correct";
+
+            }
+            else{
+                document.getElementById("demo").innerHTML = "This is incorrect, choose again";
+
+            }
+
+        };
+   
+            const btn2 = document.querySelector('#btn2');
+            // handle click button
+            btn2.onclick = function () {
+                const rbs = document.querySelectorAll('input[name="choice"]');
+                let selectedValue;
+                for (const rb of rbs) {
+                    if (rb.checked) {
+                        selectedValue = rb.value;
+                        break;
+                    }
+                }
+                //alert(selectedValue);
+    
+                if(selectedValue==='C'){
+                    document.getElementById("demo2").innerHTML = "This is correct";
+    
+                }
+                else{
+                    document.getElementById("demo2").innerHTML = "This is incorrect, choose again";
+    
+                }
+    
+            };
+            const btn3 = document.querySelector('#btn3');
+            // handle click button
+            btn3.onclick = function () {
+                const rbs = document.querySelectorAll('input[name="choice"]');
+                let selectedValue;
+                for (const rb of rbs) {
+                    if (rb.checked) {
+                        selectedValue = rb.value;
+                        break;
+                    }
+                }
+                //alert(selectedValue);
+    
+                if(selectedValue==='D'){
+                    document.getElementById("demo3").innerHTML = "This is correct";
+    
+                }
+                else{
+                    document.getElementById("demo3").innerHTML = "This is incorrect, choose again";
+    
+                }
+    
+            };
+        </script>
+</body>
+</html>
